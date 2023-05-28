@@ -3,34 +3,37 @@ Feature('Liking Restaurants')
 
 Scenario('liking one restaurant', async ({ I }) => {
   I.amOnPage('/')
-  await new Promise((resolve) => setTimeout(resolve, 3000))
+  I.waitForElement('.resto-item', 3)
 
   I.seeElement('.resto-item')
-  await new Promise((resolve) => setTimeout(resolve, 1000))
+  I.wait(1)
 
   I.seeElement('.btn-detail')
-  await new Promise((resolve) => setTimeout(resolve, 1000))
+  I.wait(1)
 
   I.click('.btn-detail')
-  await new Promise((resolve) => setTimeout(resolve, 3000))
+  I.waitForElement('#likeButtonContainer', 3)
 
   I.seeElement('#likeButtonContainer')
+  I.wait(2)
 
   I.click('#likeButton')
-  await new Promise((resolve) => setTimeout(resolve, 3000))
+  I.wait(3)
 
   I.amOnPage('/#/fav')
-  await new Promise((resolve) => setTimeout(resolve, 3000))
+  I.wait(5)
 
   I.seeElement('.btn-detail')
-  await new Promise((resolve) => setTimeout(resolve, 1000))
-
   I.click('.btn-detail')
-  await new Promise((resolve) => setTimeout(resolve, 3000))
+
+  I.waitForElement('#likeButtonContainer')
 
   I.seeElement('#likeButtonContainer')
-  await new Promise((resolve) => setTimeout(resolve, 1000))
+  I.wait(3)
 
   I.click('#likeButton')
-  await new Promise((resolve) => setTimeout(resolve, 5000))
+  I.wait(3)
+
+  I.amOnPage('/#/fav')
+  I.wait(5)
 })

@@ -4,8 +4,8 @@ import CONFIG from '../../globals/config'
 const createRestaurantItemTemplate = (restaurant) => `
   <article class="resto-item">
     <picture>        
-        <source srcset="${CONFIG.BASE_IMAGE_URL}${restaurant.pictureId}" type="image/jpeg" media="all and (max-width: 600px)" />
-        <img class="resto-item-thumbnail lazyload" src="${CONFIG.BASE_IMAGE_URL}${restaurant.pictureId}" alt="${restaurant.name}" crossorigin = "anonymous" />
+        <data-srcset srcset="${CONFIG.BASE_IMAGE_URL}${restaurant.pictureId}" type="image/jpeg" media="all and (max-width: 600px)" />
+        <img class="resto-item-thumbnail lazyload" data-src="${CONFIG.BASE_IMAGE_URL}${restaurant.pictureId}" alt="${restaurant.name}" crossorigin = "anonymous" />
     </picture>
     <div class="city" tabindex="0">${restaurant.city}</div>
     <div class="resto-item-content">

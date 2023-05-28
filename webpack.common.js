@@ -1,13 +1,15 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
+const WorkboxWebpackPlugin = require('workbox-webpack-plugin')
 const ImageminWebpackPlugin = require('imagemin-webpack-plugin').default
 const ImageminMozjpeg = require('imagemin-mozjpeg')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
 module.exports = {
   entry: {
-    app: path.resolve(__dirname, 'src/scripts/index.js'),
-    sw: path.resolve(__dirname, 'src/scripts/sw.js')
+    app: path.resolve(__dirname, 'src/scripts/index.js')
+    // sw: path.resolve(__dirname, 'src/scripts/sw.js')
   },
   output: {
     filename: '[name].bundle.js',
@@ -46,6 +48,9 @@ module.exports = {
         }
       ]
     }),
+    new WorkboxWebpackPlugin.GenerateSW({
+      swDest: './sw.bundle.js'
+    }),
     new ImageminWebpackPlugin({
       plugins: [
         ImageminMozjpeg({
@@ -53,6 +58,7 @@ module.exports = {
           progressive: true
         })
       ]
-    })
+    }),
+    new BundleAnalyzerPlugin()
   ]
 }
